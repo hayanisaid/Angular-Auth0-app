@@ -1,3 +1,8 @@
-<p>
-  profile works!
-</p>
+<div  class="container">
+	<div class="alert alert-danger" *ngIf="!auth.isAuthenticated()">
+		please login to your profile
+	</div>
+	<div class="alert alert-success" *ngIf="auth.isAuthenticated()">
+		Welcome to your profile
+	</div>
+</div>

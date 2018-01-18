@@ -21,6 +21,7 @@ export class AuthServiceService {
 
   public login(): void {
     this.auth0.authorize();
+    //this.router.navigate(['profile']);
   }
 
   /*logout function*/
@@ -44,5 +45,29 @@ export class AuthServiceService {
     return new Date().getTime() < expiresAt;
   }
   /*authtnetication function*/
+  /*se session*/
+    private setSession(authResult): void {
+    // Set the time that the access token will expire at
+    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken);
+    localStorage.setItem('expires_at', expiresAt);
+  }
+  /*set session*/
+
+  /*handle function*/
+    public handleAuthentication(): void {
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        window.location.hash = '';
+        this.setSession(authResult);
+        this.router.navigate(['/profile']);
+      } else if (err) {
+        this.router.navigate(['/home']);
+        console.log(err);
+      }
+    });
+  }
+  /*handle functin*/
 
 }

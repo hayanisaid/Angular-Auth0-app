@@ -11,8 +11,17 @@
         <a class="nav-link" routerLink="home" routerLinkActive="active">Home</a>
       </li>
       
-      <li class="nav-item">
-        <a class="nav-link disabled" routerLink="profile" routerLinkActive="active">Profile</a>
+      
+    </ul>
+    <ul class="navbar-nav navbar-right">
+    	<li class="nav-item" *ngIf="!auth.isAuthenticated()">
+        <a class="nav-link " href="#" (click)="auth.login()">login</a>
+      </li>
+      <li class="nav-item" *ngIf="auth.isAuthenticated()" >
+        <a class="nav-link"  routerLink="profile" routerLinkActive="active">Profile </a>
+      </li>
+      <li class="nav-item" *ngIf="auth.isAuthenticated()">
+        <a class="nav-link" href="#" (click)="auth.logout()"> LogOut</a>
       </li>
     </ul>
     

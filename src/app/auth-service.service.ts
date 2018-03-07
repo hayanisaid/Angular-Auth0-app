@@ -9,11 +9,11 @@ import * as auth0 from 'auth0-js';
 export class AuthServiceService {
 
    auth0 = new auth0.WebAuth({
-    clientID: 'BAdyOLO1Ya20r6SXQ9ix6luVICF96kRr',
-    domain: 'saidhayani.auth0.com',
+    clientID: 'YourcClinetId',
+    domain: 'Yourdomain',
     responseType: 'token id_token',
-    audience: 'https://saidhayani.auth0.com/userinfo',
-    redirectUri: 'http://localhost:4200',
+    audience: 'audience url',
+    redirectUri: 'Redirect url',
     scope: 'openid'
   });
 
